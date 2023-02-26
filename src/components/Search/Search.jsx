@@ -1,6 +1,6 @@
 import { MovieList } from "components/MovieList/MovieList";
 import { Container, StyledSection } from "index.styled";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getSearch } from "services/api";
 import { SearchInput, SearchButton, SearchForm } from "./Search.styled";
