@@ -19,7 +19,6 @@ const Search = () => {
 
   useEffect(() => {
     const searchMovie = async () => setSearchedMovie(await getSearch(search));
-
     searchMovie();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
