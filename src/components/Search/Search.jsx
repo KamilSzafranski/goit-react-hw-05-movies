@@ -17,13 +17,13 @@ export const Search = () => {
     setSeatch(event.target.value);
   };
 
-  const searchMovie = useCallback(async () => {
+  const searchMovie = async () => {
     setSearchedMovie(await getSearch(search));
-  }, []);
+  };
 
   useEffect(() => {
     searchMovie();
-  }, [searchMovie]);
+  }, []);
 
   const handleSubmit = async e => {
     e.preventDefault();
