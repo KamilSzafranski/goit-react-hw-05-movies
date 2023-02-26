@@ -3,13 +3,19 @@ import { Container, StyledSection } from "index.styled";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getSearch } from "services/api";
-import { SearchInput, SearchButton, SearchForm } from "./Search.styled";
+import {
+  SearchInput,
+  SearchButton,
+  SearchForm,
+  Warning,
+} from "./Search.styled";
 
 const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const title = searchParams.get("title");
   const [search, setSeatch] = useState(title || "");
   const [searchedMovie, setSearchedMovie] = useState([]);
+  const [searchNothing, setSearchNothing] = useState(false);
 
   const handleChange = event => {
     event.preventDefault();
@@ -18,13 +24,17 @@ const Search = () => {
   };
 
   useEffect(() => {
-    const searchMovie = async () => setSearchedMovie(await getSearch(search));
+    const searchMovie = async () =>
+      setSearchedMovie(await getSearch(search.trim()));
     searchMovie();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setSearchedMovie(await getSearch(search));
+    const getSearchedMovie = await getSearch(search);
+    if (getSearchedMovie.total_results === 0) return setSearchNothing(true);
+    setSearchedMovie(getSearchedMovie);
+    setSearchNothing(false);
   };
   return (
     <StyledSection>
@@ -37,7 +47,13 @@ const Search = () => {
           ></SearchInput>
           <SearchButton type="submit">Search</SearchButton>
         </SearchForm>
-        {searchedMovie.results !== undefined && (
+        {searchNothing && (
+          <Warning>
+            We found nothing &#x1F62D; Please try againg with corret search
+            value &#x1F609;
+          </Warning>
+        )}
+        {searchedMovie.results !== undefined && !searchNothing && (
           <MovieList movie={searchedMovie.results} />
         )}
       </Container>

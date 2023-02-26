@@ -6,7 +6,6 @@ import { ReviewTitle, ReviewText } from "./Review.styled";
 
 const Review = () => {
   const { elementId } = useParams();
-
   const [review, setReview] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 

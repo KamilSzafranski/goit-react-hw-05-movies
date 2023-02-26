@@ -6,7 +6,6 @@ import { getCast } from "services/api";
 
 const Cast = () => {
   const { elementId } = useParams();
-
   const [cast, setCast] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -18,7 +17,6 @@ const Cast = () => {
   useEffect(() => {
     setIsLoading(true);
     movieCast();
-
     setIsLoading(false);
   }, [movieCast]);
 

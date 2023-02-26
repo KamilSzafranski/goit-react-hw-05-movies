@@ -18,7 +18,7 @@ const Movie = () => {
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
 
-  const backLinkHref = location.state?.from ?? "/";
+  const goBack = location.state?.from ?? "/";
 
   const movieDetils = useCallback(async () => {
     setDetails(await getDetails(elementId));
@@ -53,7 +53,7 @@ const Movie = () => {
       {!isLoading && (
         <StyledSection>
           <Container>
-            <BtnBack to={backLinkHref}>Go back</BtnBack>
+            <BtnBack to={goBack}>Go back</BtnBack>
             <MovieContainer>
               <MovieImage
                 src={`https://image.tmdb.org/t/p/w500/${details.poster_path}`}

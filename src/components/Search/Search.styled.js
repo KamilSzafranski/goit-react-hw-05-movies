@@ -32,3 +32,8 @@ export const SearchForm = styled.form`
   gap: 10px;
   align-items: center;
 `;
+
+export const Warning = styled.h2`
+  padding-top: 30vh;
+  text-align: center;
+`;
