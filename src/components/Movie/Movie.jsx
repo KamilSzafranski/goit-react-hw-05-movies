@@ -1,16 +1,82 @@
-import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Container, StyledSection } from "index.styled";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { TailSpin } from "react-loader-spinner";
+import { NavLink, Outlet, useParams } from "react-router-dom";
+import { getDetails } from "services/api";
+import {
+  BtnBack,
+  MovieContainer,
+  MovieTitle,
+  MovieText,
+  MovieImage,
+  StyledLink,
+} from "./Movie.styled";
 
 export const Movie = () => {
+  const { elementId } = useParams();
+  const [details, setDetails] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
+  const movieDetils = useCallback(async () => {
+    setDetails(await getDetails(elementId));
+  }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+    movieDetils();
+
+    setIsLoading(false);
+  }, [movieDetils]);
+
   return (
-    <div>
-      {" "}
-      movie
-      <NavLink to={"cast"}>
-        {" "}
-        <p>eee</p>
-      </NavLink>
-      <Outlet />
-    </div>
+    <>
+      {isLoading && (
+        <TailSpin
+          height="160"
+          width="160"
+          color="#2196f3"
+          ariaLabel="tail-spin-loading"
+          radius="1"
+          wrapperStyle={{
+            paddingTop: "35vh",
+            display: "flex",
+            justifyContent: "center",
+          }}
+          wrapperClass="Spinner"
+          visible={true}
+        />
+      )}
+
+      {!isLoading && (
+        <StyledSection>
+          <Container>
+            <BtnBack to="/">Go back</BtnBack>
+            <MovieContainer>
+              <MovieImage
+                src={`https://image.tmdb.org/t/p/w500/${details.poster_path}`}
+              />
+              <div>
+                <MovieTitle>{details.title}</MovieTitle>
+                <MovieText>
+                  User Score: {Math.round(details.vote_average * 10)} %
+                </MovieText>
+                <MovieTitle>Overwiew</MovieTitle>
+                <MovieText>{details.overview}</MovieText>
+                <MovieTitle>Genres</MovieTitle>
+                <MovieText>
+                  {details?.genres?.map(element => element.name).join(" ")}
+                </MovieText>
+              </div>
+            </MovieContainer>
+            <div>
+              <MovieTitle> Additional Information</MovieTitle>
+              <StyledLink to="cast">Cast</StyledLink>
+              <StyledLink to="reviews">Reviews</StyledLink>
+            </div>
+            <Outlet />
+          </Container>
+        </StyledSection>
+      )}
+    </>
   );
 };
