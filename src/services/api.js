@@ -1,5 +1,3 @@
-import { Movie } from "components/Movie/Movie";
-
 const API_KEY = "6013882f278a288901195e6aa884c4e8";
 const API_URL_TRENDING = "https://api.themoviedb.org/3/trending/all/day?";
 const API_URL_DETAILS = "https://api.themoviedb.org/3/movie/";
@@ -22,29 +20,50 @@ export const getTrendingToday = async () => {
 };
 
 export const getDetails = async movieID => {
-  const response = await fetch(`${API_URL_DETAILS}${movieID}?${params}`);
-  const movieDetail = await response.json();
-  return movieDetail;
+  try {
+    const response = await fetch(`${API_URL_DETAILS}${movieID}?${params}`);
+    if (!response.ok) throw new Error(response.statu);
+
+    const movieDetail = await response.json();
+    return movieDetail;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getCast = async movieID => {
-  const response = await fetch(
-    `${API_URL_DETAILS}${movieID}/credits?${params}`
-  );
-  const movieCast = await response.json();
-  return movieCast;
+  try {
+    const response = await fetch(
+      `${API_URL_DETAILS}${movieID}/credits?${params}`
+    );
+    if (!response.ok) throw new Error(response.statu);
+    const movieCast = await response.json();
+    return movieCast;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getReviews = async movieID => {
-  const response = await fetch(
-    `${API_URL_DETAILS}${movieID}/reviews?${params}`
-  );
-  const movieReview = await response.json();
-  return movieReview;
+  try {
+    const response = await fetch(
+      `${API_URL_DETAILS}${movieID}/reviews?${params}`
+    );
+    if (!response.ok) throw new Error(response.statu);
+    const movieReview = await response.json();
+    return movieReview;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getSearch = async search => {
-  const response = await fetch(`${API_URL_SEARCH}${params}&query=${search}`);
-  const movieSearch = await response.json();
-  return movieSearch;
+  try {
+    const response = await fetch(`${API_URL_SEARCH}${params}&query=${search}`);
+    if (!response.ok) throw new Error(response.statu);
+    const movieSearch = await response.json();
+    return movieSearch;
+  } catch (error) {
+    console.log(error);
+  }
 };

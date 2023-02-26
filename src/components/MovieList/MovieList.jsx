@@ -1,6 +1,7 @@
 import React from "react";
 import { ListItem } from "./MovieList.styled";
 import { NavLink, useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export const MovieList = ({ movie }) => {
   const location = useLocation();
@@ -17,4 +18,8 @@ export const MovieList = ({ movie }) => {
       ))}
     </ul>
   );
+};
+
+MovieList.propTypes = {
+  movie: PropTypes.array.isRequired,
 };

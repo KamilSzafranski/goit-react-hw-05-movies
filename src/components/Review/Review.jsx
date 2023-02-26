@@ -12,14 +12,13 @@ export const Review = () => {
 
   const movieReview = useCallback(
     async () => setReview(await getReviews(elementId)),
-    []
+    [elementId]
   );
 
   useEffect(() => {
     setIsLoading(true);
     movieReview();
     setIsLoading(false);
-    console.log(review?.results?.lenght);
   }, [movieReview]);
 
   return (

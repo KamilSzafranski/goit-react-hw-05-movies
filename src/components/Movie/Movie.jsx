@@ -1,13 +1,7 @@
 import { Container, StyledSection } from "index.styled";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { TailSpin } from "react-loader-spinner";
-import {
-  Link,
-  NavLink,
-  Outlet,
-  useLocation,
-  useParams,
-} from "react-router-dom";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 import { getDetails } from "services/api";
 import {
   BtnBack,
@@ -28,7 +22,7 @@ export const Movie = () => {
 
   const movieDetils = useCallback(async () => {
     setDetails(await getDetails(elementId));
-  }, []);
+  }, [elementId]);
 
   useEffect(() => {
     setIsLoading(true);

@@ -12,7 +12,7 @@ export const Cast = () => {
 
   const movieCast = useCallback(
     async () => setCast(await getCast(elementId)),
-    []
+    [elementId]
   );
 
   useEffect(() => {

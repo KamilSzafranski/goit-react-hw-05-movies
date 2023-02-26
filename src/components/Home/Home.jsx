@@ -1,10 +1,8 @@
 import { Container } from "index.styled";
 import React, { useCallback, useEffect, useState } from "react";
-import { Title, ListItem } from "./Home.styled";
+import { Title } from "./Home.styled";
 import { StyledSection } from "index.styled";
 import { getTrendingToday } from "../../services/api.js";
-import { element } from "prop-types";
-import { NavLink } from "react-router-dom";
 import { TailSpin } from "react-loader-spinner";
 import { MovieList } from "components/MovieList/MovieList";
 

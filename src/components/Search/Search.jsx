@@ -19,11 +19,11 @@ export const Search = () => {
 
   const searchMovie = useCallback(async () => {
     setSearchedMovie(await getSearch(search));
-  }, [search]);
+  }, []);
 
   useEffect(() => {
     searchMovie();
-  }, []);
+  }, [searchMovie]);
 
   const handleSubmit = async e => {
     e.preventDefault();
