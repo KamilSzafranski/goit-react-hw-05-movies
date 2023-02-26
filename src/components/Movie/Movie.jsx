@@ -18,7 +18,7 @@ export const Movie = () => {
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
 
-  const backLinkHref = location.state?.from ?? "/products";
+  const backLinkHref = location.state?.from ?? "/";
 
   const movieDetils = useCallback(async () => {
     setDetails(await getDetails(elementId));

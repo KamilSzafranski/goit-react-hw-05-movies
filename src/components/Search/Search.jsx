@@ -21,7 +21,7 @@ export const Search = () => {
     const searchMovie = async () => setSearchedMovie(await getSearch(search));
 
     searchMovie();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = async e => {
     e.preventDefault();

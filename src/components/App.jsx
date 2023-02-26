@@ -6,6 +6,7 @@ import { Movie } from "./Movie/Movie";
 import { Cast } from "./Cast/Cast";
 import { Review } from "./Review/Review";
 import { Search } from "./Search/Search";
+import NotFound from "./NotFound/NotFound";
 
 export const App = () => {
   return (
@@ -19,6 +20,7 @@ export const App = () => {
           </Route>
           <Route path="search" element={<Search />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
