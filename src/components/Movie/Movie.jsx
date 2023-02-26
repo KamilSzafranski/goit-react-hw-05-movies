@@ -12,7 +12,7 @@ import {
   StyledLink,
 } from "./Movie.styled";
 
-export const Movie = () => {
+const Movie = () => {
   const { elementId } = useParams();
   const [details, setDetails] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -83,3 +83,5 @@ export const Movie = () => {
     </>
   );
 };
+
+export default Movie;

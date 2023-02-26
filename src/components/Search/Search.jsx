@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import { getSearch } from "services/api";
 import { SearchInput, SearchButton, SearchForm } from "./Search.styled";
 
-export const Search = () => {
+const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const title = searchParams.get("title");
   const [search, setSeatch] = useState(title || "");
@@ -45,3 +45,5 @@ export const Search = () => {
     </StyledSection>
   );
 };
+
+export default Search;

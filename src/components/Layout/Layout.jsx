@@ -1,9 +1,9 @@
 import { Container } from "index.styled.js";
-import React, { Fragment } from "react";
+import React, { Fragment, Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { MenuStyled, StyledLink, Header } from "./Layout.styled.js";
 
-export const Layout = () => {
+const Layout = () => {
   return (
     <>
       <Header>
@@ -14,7 +14,10 @@ export const Layout = () => {
           </MenuStyled>
         </Container>
       </Header>
-      <Outlet />
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
+export default Layout;

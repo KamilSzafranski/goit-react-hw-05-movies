@@ -1,12 +1,13 @@
-import React, { Fragment } from "react";
+import React, { Fragment, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Layout } from "./Layout/Layout";
-import { Home } from "./Home/Home";
-import { Movie } from "./Movie/Movie";
-import { Cast } from "./Cast/Cast";
-import { Review } from "./Review/Review";
-import { Search } from "./Search/Search";
-import NotFound from "./NotFound/NotFound";
+
+const Layout = lazy(() => import("./Layout/Layout"));
+const Movie = lazy(() => import("./Movie/Movie"));
+const Cast = lazy(() => import("./Cast/Cast"));
+const Review = lazy(() => import("./Review/Review"));
+const Search = lazy(() => import("./Search/Search"));
+const NotFound = lazy(() => import("./NotFound/NotFound"));
+const Home = lazy(() => import("./Home/Home"));
 
 export const App = () => {
   return (

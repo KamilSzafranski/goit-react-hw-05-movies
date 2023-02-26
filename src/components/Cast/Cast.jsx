@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCast } from "services/api";
 
-export const Cast = () => {
+const Cast = () => {
   const { elementId } = useParams();
 
   const [cast, setCast] = useState({});
@@ -60,3 +60,5 @@ export const Cast = () => {
     </>
   );
 };
+
+export default Cast;

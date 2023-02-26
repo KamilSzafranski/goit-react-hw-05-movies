@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { getReviews } from "services/api";
 import { ReviewTitle, ReviewText } from "./Review.styled";
 
-export const Review = () => {
+const Review = () => {
   const { elementId } = useParams();
 
   const [review, setReview] = useState({});
@@ -58,3 +58,5 @@ export const Review = () => {
     </>
   );
 };
+
+export default Review;

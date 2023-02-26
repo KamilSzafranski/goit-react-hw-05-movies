@@ -23,3 +23,5 @@ export const MovieList = ({ movie }) => {
 MovieList.propTypes = {
   movie: PropTypes.array.isRequired,
 };
+
+export default MovieList;

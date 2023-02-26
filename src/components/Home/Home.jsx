@@ -6,7 +6,7 @@ import { getTrendingToday } from "../../services/api.js";
 import { TailSpin } from "react-loader-spinner";
 import { MovieList } from "components/MovieList/MovieList";
 
-export const Home = () => {
+const Home = () => {
   const [trendingMovie, setTrendingMovie] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -49,3 +49,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default Home;
