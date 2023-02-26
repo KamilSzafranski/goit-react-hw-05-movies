@@ -17,17 +17,15 @@ export const Search = () => {
     setSeatch(event.target.value);
   };
 
-  const searchMovie = async () => {
-    setSearchedMovie(await getSearch(search));
-  };
-
   useEffect(() => {
+    const searchMovie = async () => setSearchedMovie(await getSearch(search));
+
     searchMovie();
   }, []);
 
   const handleSubmit = async e => {
     e.preventDefault();
-    searchMovie();
+    setSearchedMovie(await getSearch(search));
   };
   return (
     <StyledSection>
