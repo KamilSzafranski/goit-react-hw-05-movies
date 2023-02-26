@@ -6,6 +6,7 @@ import { getTrendingToday } from "../../services/api.js";
 import { element } from "prop-types";
 import { NavLink } from "react-router-dom";
 import { TailSpin } from "react-loader-spinner";
+import { MovieList } from "components/MovieList/MovieList";
 
 export const Home = () => {
   const [trendingMovie, setTrendingMovie] = useState([]);
@@ -44,13 +45,7 @@ export const Home = () => {
       <StyledSection>
         <Container>
           <Title>Trending today:</Title>
-          <ul>
-            {trendingMovie.map(element => (
-              <NavLink key={element.id} to={`movie/${element.id}`}>
-                <ListItem>{element.title ?? "No title yet"}</ListItem>
-              </NavLink>
-            ))}
-          </ul>
+          <MovieList movie={trendingMovie} />
         </Container>
       </StyledSection>
     </>

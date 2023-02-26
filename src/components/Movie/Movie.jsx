@@ -1,7 +1,13 @@
 import { Container, StyledSection } from "index.styled";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { TailSpin } from "react-loader-spinner";
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import { getDetails } from "services/api";
 import {
   BtnBack,
@@ -16,6 +22,9 @@ export const Movie = () => {
   const { elementId } = useParams();
   const [details, setDetails] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
+
+  const backLinkHref = location.state?.from ?? "/products";
 
   const movieDetils = useCallback(async () => {
     setDetails(await getDetails(elementId));
@@ -50,7 +59,7 @@ export const Movie = () => {
       {!isLoading && (
         <StyledSection>
           <Container>
-            <BtnBack to="/">Go back</BtnBack>
+            <BtnBack to={backLinkHref}>Go back</BtnBack>
             <MovieContainer>
               <MovieImage
                 src={`https://image.tmdb.org/t/p/w500/${details.poster_path}`}
