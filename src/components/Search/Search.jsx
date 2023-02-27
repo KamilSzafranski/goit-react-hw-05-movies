@@ -25,9 +25,9 @@ const Search = () => {
 
   useEffect(() => {
     const searchMovie = async () =>
-      setSearchedMovie(await getSearch(search.trim()));
+      setSearchedMovie(await getSearch(title.trim()));
     searchMovie();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSubmit = async e => {
     e.preventDefault();
