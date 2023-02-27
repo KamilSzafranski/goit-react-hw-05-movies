@@ -24,8 +24,9 @@ const Search = () => {
   };
 
   useEffect(() => {
+    const test = searchParams.get("title");
     const searchMovie = async () =>
-      setSearchedMovie(await getSearch(title.trim()));
+      setSearchedMovie(await getSearch((test ?? "").trim()));
     searchMovie();
   }, []);
 
