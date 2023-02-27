@@ -1,6 +1,6 @@
 import { MovieList } from "components/MovieList/MovieList";
 import { Container, StyledSection } from "index.styled";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getSearch } from "services/api";
 import {
@@ -16,6 +16,7 @@ const Search = () => {
   const [search, setSeatch] = useState(title || "");
   const [searchedMovie, setSearchedMovie] = useState([]);
   const [searchNothing, setSearchNothing] = useState(false);
+  const inputValue = useRef();
 
   const handleChange = event => {
     event.preventDefault();
@@ -24,9 +25,8 @@ const Search = () => {
   };
 
   useEffect(() => {
-    const test = searchParams.get("title");
     const searchMovie = async () =>
-      setSearchedMovie(await getSearch((test ?? "").trim()));
+      setSearchedMovie(await getSearch(inputValue.current.value.trim()));
     searchMovie();
   }, []);
 
@@ -42,6 +42,7 @@ const Search = () => {
       <Container>
         <SearchForm onSubmit={handleSubmit}>
           <SearchInput
+            ref={inputValue}
             type="text"
             value={title ?? ""}
             onChange={handleChange}
